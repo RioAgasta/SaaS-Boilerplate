@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { BlogSection } from '@/templates/BlogSection';
 import { CTA } from '@/templates/CTA';
 import { DemoBanner } from '@/templates/DemoBanner';
 import { FAQ } from '@/templates/FAQ';
@@ -31,6 +32,7 @@ const IndexPage = () => {
       <Hero />
       <Sponsors />
       <Features />
+      <BlogSection />
       <Pricing />
       <FAQ />
       <CTA />

@@ -162,5 +162,26 @@
     "message_title": "Message",
     "message_description": "Enter a detailed message for your todo.",
     "submit_button": "Submit"
+  },
+  "Blog": {
+    "section_subtitle": "Resources",
+    "section_title": "Learn How to Build Better SaaS Products",
+    "section_description": "Explore our latest articles, guides, and best practices to help you build and scale your SaaS business.",
+    "article1_title": "Getting Started with SaaS Development",
+    "article1_description": "Learn the fundamentals of building a scalable SaaS application from scratch. Best practices, architecture patterns, and essential tools.",
+    "article1_category": "Guide",
+    "article1_date": "October 15, 2025",
+    "article2_title": "Building Secure Authentication Systems",
+    "article2_description": "Implement robust authentication and authorization for your SaaS platform. OAuth, JWT, and security best practices.",
+    "article2_category": "Security",
+    "article2_date": "October 12, 2025",
+    "article3_title": "Optimizing SaaS Performance at Scale",
+    "article3_description": "Strategies to improve application performance, reduce costs, and deliver better user experiences as your SaaS grows.",
+    "article3_category": "Performance",
+    "article3_date": "October 10, 2025",
+    "article4_title": "Scaling Your SaaS Infrastructure",
+    "article4_description": "Best practices for infrastructure scaling, database optimization, caching strategies, and handling high traffic loads.",
+    "article4_category": "Infrastructure",
+    "article4_date": "October 8, 2025"
   }
 }
