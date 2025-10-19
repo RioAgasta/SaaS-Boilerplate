@@ -135,6 +135,126 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
+
+  .catppuccin-latte {
+    --background: 220 23% 95%;
+    --foreground: 230 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 230 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 15% 20%;
+
+    --primary: 267 80% 52%;
+    --primary-foreground: 220 23% 95%;
+
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 230 15% 20%;
+
+    --muted: 220 14% 90%;
+    --muted-foreground: 230 9% 45%;
+
+    --accent: 220 14% 90%;
+    --accent-foreground: 267 80% 52%;
+
+    --destructive: 347 77% 55%;
+    --destructive-foreground: 220 23% 95%;
+
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 267 80% 52%;
+  }
+
+  .catppuccin-frappe {
+    --background: 230 17% 18%;
+    --foreground: 220 21% 85%;
+
+    --card: 230 17% 22%;
+    --card-foreground: 220 21% 85%;
+
+    --popover: 230 17% 22%;
+    --popover-foreground: 220 21% 85%;
+
+    --primary: 267 79% 69%;
+    --primary-foreground: 233 22% 20%;
+
+    --secondary: 240 20% 25%;
+    --secondary-foreground: 220 21% 85%;
+
+    --muted: 240 20% 25%;
+    --muted-foreground: 220 9% 60%;
+
+    --accent: 240 20% 25%;
+    --accent-foreground: 267 79% 69%;
+
+    --destructive: 347 70% 60%;
+    --destructive-foreground: 230 17% 18%;
+
+    --border: 240 20% 25%;
+    --input: 240 20% 25%;
+    --ring: 267 79% 69%;
+  }
+
+  .catppuccin-macchiato {
+    --background: 230 20% 15%;
+    --foreground: 220 22% 85%;
+
+    --card: 230 20% 20%;
+    --card-foreground: 220 22% 85%;
+
+    --popover: 230 20% 20%;
+    --popover-foreground: 220 22% 85%;
+
+    --primary: 267 81% 70%;
+    --primary-foreground: 233 22% 20%;
+
+    --secondary: 240 22% 25%;
+    --secondary-foreground: 220 22% 85%;
+
+    --muted: 240 22% 25%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 240 22% 25%;
+    --accent-foreground: 267 81% 70%;
+
+    --destructive: 347 72% 60%;
+    --destructive-foreground: 230 20% 15%;
+
+    --border: 240 22% 25%;
+    --input: 240 22% 25%;
+    --ring: 267 81% 70%;
+  }
+
+  .catppuccin-mocha {
+    --background: 240 21% 15%;
+    --foreground: 226 64% 88%;
+
+    --card: 240 21% 18%;
+    --card-foreground: 226 64% 88%;
+
+    --popover: 240 21% 18%;
+    --popover-foreground: 226 64% 88%;
+
+    --primary: 267 84% 81%;
+    --primary-foreground: 233 22% 20%;
+
+    --secondary: 240 23% 25%;
+    --secondary-foreground: 226 64% 88%;
+
+    --muted: 240 23% 25%;
+    --muted-foreground: 226 20% 70%;
+
+    --accent: 240 23% 25%;
+    --accent-foreground: 267 84% 81%;
+
+    --destructive: 347 77% 68%;
+    --destructive-foreground: 240 21% 15%;
+
+    --border: 240 23% 25%;
+    --input: 240 23% 25%;
+    --ring: 267 84% 81%;
+  }
 }
 
 @layer base {
