@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { CardDemo } from '@/templates/CardDemo';
 import { CTA } from '@/templates/CTA';
 import { DemoBanner } from '@/templates/DemoBanner';
 import { FAQ } from '@/templates/FAQ';
@@ -28,6 +29,7 @@ const IndexPage = () => {
     <>
       <DemoBanner />
       <Navbar />
+      <CardDemo />
       <Hero />
       <Sponsors />
       <Features />
