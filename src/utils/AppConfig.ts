@@ -6,6 +6,7 @@ const localePrefix = 'as-needed' as const;
 export const AppConfig = {
   name: 'SaaS Template',
   locales: [
+    { id: 'id', name: 'Bahasa Indonesia' },
     {
       id: 'en',
       name: 'English',
