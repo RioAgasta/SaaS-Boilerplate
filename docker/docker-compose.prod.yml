@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: saas
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  next-app:
+    container_name: next_app
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - postgres
+    env_file:
+      - ../.env
+    environment:
+      DATABASE_URL: postgresql://user:password@postgres:5432/saas
+      NODE_ENV: development
+    restart: unless-stopped
+
+  drizzle-studio:
+    container_name: drizzle_studio
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "5555:5555" # Exposing a port for Drizzle Studio
+    volumes:
+      - ../:/app
+      - /app/node_modules
+    command: npx drizzle-kit studio --port 5555 --host 0.0.0.0
+    depends_on:
+      - postgres
+    env_file:
+      - ../.env
+    environment:
+      DATABASE_URL: postgresql://user:password@postgres:5432/saas
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
