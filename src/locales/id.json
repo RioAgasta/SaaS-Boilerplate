@@ -1,0 +1,166 @@
+{
+  "Index": {
+    "meta_title": "SaaS Template - Template SaaS sempurna untuk membangun dan mengembangkan bisnis Anda dengan mudah.",
+    "meta_description": "Template halaman arahan gratis dan open-source untuk bisnis SaaS Anda, dibuat dengan React, TypeScript, Shadcn UI, dan Tailwind CSS."
+  },
+  "Navbar": {
+    "sign_in": "Masuk",
+    "sign_up": "Daftar",
+    "product": "Produk",
+    "docs": "Dokumentasi",
+    "blog": "Blog",
+    "community": "Komunitas",
+    "company": "Perusahaan"
+  },
+  "Hero": {
+    "follow_twitter": "Ikuti @Ixartz di Twitter",
+    "title": "Template <important>SaaS sempurna</important> untuk membangun dan mengembangkan bisnis Anda dengan mudah.",
+    "description": "Template halaman arahan gratis dan open-source untuk bisnis SaaS Anda, dibuat dengan React, TypeScript, Shadcn UI, dan Tailwind CSS.",
+    "primary_button": "Mulai Sekarang",
+    "secondary_button": "Beri Bintang di GitHub"
+  },
+  "Sponsors": {
+    "title": "Disponsori oleh"
+  },
+  "Features": {
+    "section_subtitle": "Fitur",
+    "section_title": "Buka Potensi Penuh dari Template SaaS",
+    "section_description": "Template halaman arahan gratis dan open-source untuk bisnis SaaS Anda, dibuat dengan React, TypeScript, Shadcn UI, dan Tailwind CSS.",
+    "feature1_title": "Node.js",
+    "feature2_title": "React",
+    "feature3_title": "Tailwind CSS",
+    "feature4_title": "TypeScript",
+    "feature5_title": "Shadcn UI",
+    "feature6_title": "ESLint",
+    "feature_description": "Template halaman arahan gratis dan open-source untuk bisnis SaaS Anda, dibuat dengan React, TypeScript, Shadcn UI, dan Tailwind CSS."
+  },
+  "Pricing": {
+    "section_subtitle": "Fitur",
+    "section_title": "Buka Potensi Penuh dari Template SaaS",
+    "section_description": "Template halaman arahan gratis dan open-source untuk bisnis SaaS Anda, dibuat dengan React, TypeScript, Shadcn UI, dan Tailwind CSS.",
+    "button_text": "Mulai Sekarang"
+  },
+  "PricingPlan": {
+    "free_plan_name": "Gratis",
+    "premium_plan_name": "Premium",
+    "enterprise_plan_name": "Enterprise",
+    "free_plan_description": "Untuk individu",
+    "premium_plan_description": "Untuk tim kecil",
+    "enterprise_plan_description": "Untuk pemimpin industri",
+    "feature_team_member": "{number} Anggota Tim",
+    "feature_website": "{number} Situs Web",
+    "feature_storage": "{number} GB Penyimpanan",
+    "feature_transfer": "{number} TB Transfer",
+    "feature_email_support": "Dukungan Email",
+    "plan_interval_month": "bulan",
+    "plan_interval_year": "tahun",
+    "next_renew_date": "Langganan Anda diperbarui pada {date}"
+  },
+  "FAQ": {
+    "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam enim dui, id consequat turpis ullamcorper ac. Mauris id quam dolor. Nullam eu egestas turpis. Proin risus elit, sollicitudin in mi a, accumsan euismod turpis. In euismod mi sed diam tristique hendrerit."
+  },
+  "CTA": {
+    "title": "Sudah siap?",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "button_text": "Beri Bintang di GitHub"
+  },
+  "Footer": {
+    "product": "Produk",
+    "docs": "Dokumentasi",
+    "blog": "Blog",
+    "community": "Komunitas",
+    "company": "Perusahaan",
+    "terms_of_service": "Syarat Layanan",
+    "privacy_policy": "Kebijakan Privasi",
+    "designed_by": "Dirancang oleh <author></author>."
+  },
+  "ProtectFallback": {
+    "not_enough_permission": "Anda tidak memiliki izin untuk melakukan tindakan ini"
+  },
+  "SignIn": {
+    "meta_title": "Masuk",
+    "meta_description": "Masuk ke akun Anda dengan proses login yang mudah dan ramah pengguna."
+  },
+  "SignUp": {
+    "meta_title": "Daftar",
+    "meta_description": "Buat akun dengan mudah melalui proses pendaftaran yang intuitif."
+  },
+  "DashboardLayout": {
+    "home": "Beranda",
+    "todos": "Daftar Tugas",
+    "members": "Anggota",
+    "billing": "Tagihan",
+    "settings": "Pengaturan"
+  },
+  "Dashboard": {
+    "meta_title": "Dashboard Template SaaS",
+    "meta_description": "Template halaman arahan gratis dan open-source untuk bisnis SaaS Anda, dibuat dengan Next.js, TypeScript, Shadcn UI, dan Tailwind CSS."
+  },
+  "DashboardIndex": {
+    "title_bar": "Dasbor",
+    "title_bar_description": "Selamat datang di dasbor Anda",
+    "message_state_title": "Mari kita mulai",
+    "message_state_description": "Anda dapat menyesuaikan halaman ini dengan mengedit file di <code>dashboard/page.tsx</code>",
+    "message_state_button": "Beri Bintang di GitHub",
+    "message_state_alternative": "Ingin lebih banyak fitur dengan tumpukan teknologi yang sama? Coba <url></url>."
+  },
+  "UserProfile": {
+    "title_bar": "Profil Pengguna",
+    "title_bar_description": "Lihat dan kelola profil pengguna Anda"
+  },
+  "OrganizationProfile": {
+    "title_bar": "Manajemen Organisasi",
+    "title_bar_description": "Kelola organisasi Anda"
+  },
+  "Billing": {
+    "title_bar": "Tagihan",
+    "title_bar_description": "Kelola tagihan dan langganan Anda",
+    "current_section_title": "Paket Saat Ini",
+    "current_section_description": "Sesuaikan paket pembayaran Anda agar sesuai dengan kebutuhan",
+    "manage_subscription_button": "Kelola Langganan"
+  },
+  "BillingOptions": {
+    "current_plan": "Paket Saat Ini",
+    "upgrade_plan": "Mulai Sekarang"
+  },
+  "CheckoutConfirmation": {
+    "title_bar": "Konfirmasi Pembayaran",
+    "message_state_title": "Pembayaran berhasil",
+    "message_state_description": "Pembayaran Anda telah berhasil diproses. Terima kasih atas pembelian Anda!",
+    "message_state_button": "Kembali ke Tagihan"
+  },
+  "DataTable": {
+    "no_results": "Tidak ada hasil."
+  },
+  "Todos": {
+    "title_bar": "Daftar Tugas",
+    "title_bar_description": "Lihat dan kelola daftar tugas Anda",
+    "add_todo_button": "Tugas Baru"
+  },
+  "TodoTableColumns": {
+    "open_menu": "Buka menu",
+    "edit": "Edit",
+    "delete": "Hapus",
+    "title_header": "Judul",
+    "message_header": "Pesan",
+    "created_at_header": "Dibuat pada"
+  },
+  "AddTodo": {
+    "title_bar": "Tambah Tugas",
+    "add_todo_section_title": "Buat tugas baru",
+    "add_todo_section_description": "Isi formulir di bawah ini untuk membuat tugas baru"
+  },
+  "EditTodo": {
+    "title_bar": "Edit Tugas",
+    "edit_todo_section_title": "Ubah Tugas",
+    "edit_todo_section_description": "Isi formulir di bawah ini untuk mengedit tugas"
+  },
+  "TodoForm": {
+    "title_label": "Judul",
+    "title_description": "Masukkan judul yang deskriptif untuk tugas Anda.",
+    "message_title": "Pesan",
+    "message_description": "Masukkan pesan detail untuk tugas Anda.",
+    "submit_button": "Kirim"
+  }
+}
