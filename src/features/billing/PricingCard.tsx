@@ -1,7 +1,10 @@
+'use client';
+
 import type { BillingInterval } from '@/types/Subscription';
 import { useTranslations } from 'next-intl';
-
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import { exportAsImage } from '@/libs/Image';
 
 export const PricingCard = (props: {
   planId: string;
@@ -12,8 +15,12 @@ export const PricingCard = (props: {
 }) => {
   const t = useTranslations('PricingPlan');
 
+  const handleExport = () => {
+    exportAsImage(props.planId, `${props.planId}-invoice.png`);
+  };
+
   return (
-    <div className="rounded-xl border border-border px-6 py-8 text-center">
+    <div id={props.planId} className="rounded-xl border border-border px-6 py-8 text-center">
       <div className="text-lg font-semibold">
         {t(`${props.planId}_plan_name`)}
       </div>
@@ -35,6 +42,10 @@ export const PricingCard = (props: {
       {props.button}
 
       <ul className="mt-8 space-y-3">{props.children}</ul>
+
+      <Button variant="outline" onClick={handleExport} className="mt-4">
+        Export as Image
+      </Button>
     </div>
   );
 };
