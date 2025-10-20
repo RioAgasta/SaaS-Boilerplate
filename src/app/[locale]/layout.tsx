@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { DemoBadge } from '@/components/DemoBadge';
 
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { AllLocales } from '@/utils/AppConfig';
 import '@/styles/global.css';
 
@@ -60,14 +61,29 @@ export default async function RootLayout(props: {
     <html lang={params.locale} suppressHydrationWarning>
       <body className="bg-background text-foreground antialiased" suppressHydrationWarning>
         {/* PRO: Dark mode support for Shadcn UI */}
-        <NextIntlClientProvider
-          locale={params.locale}
-          messages={messages}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          value={{
+            'light': 'light',
+            'dark': 'dark',
+            'catppuccin-latte': 'catppuccin-latte',
+            'catppuccin-frappe': 'catppuccin-frappe',
+            'catppuccin-macchiato': 'catppuccin-macchiato',
+            'catppuccin-mocha': 'catppuccin-mocha',
+          }}
         >
-          {props.children}
+          <NextIntlClientProvider
+            locale={params.locale}
+            messages={messages}
+          >
+            {props.children}
 
-          <DemoBadge />
-        </NextIntlClientProvider>
+            <DemoBadge />
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
