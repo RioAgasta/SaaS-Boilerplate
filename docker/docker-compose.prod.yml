@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   postgres:
@@ -11,7 +11,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - '5432:5432'
     restart: unless-stopped
 
   next-app:
@@ -20,7 +20,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - ../:/app
       - /app/node_modules
@@ -40,7 +40,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     ports:
-      - "5555:5555" # Exposing a port for Drizzle Studio
+      - '5555:5555' # Exposing a port for Drizzle Studio
     volumes:
       - ../:/app
       - /app/node_modules

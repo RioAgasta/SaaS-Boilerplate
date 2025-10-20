@@ -162,5 +162,26 @@
     "message_title": "Pesan",
     "message_description": "Masukkan pesan detail untuk tugas Anda.",
     "submit_button": "Kirim"
+  },
+  "Blog": {
+    "section_subtitle": "Resources",
+    "section_title": "Pelajari Cara Membangun Produk SaaS yang Lebih Baik",
+    "section_description": "Jelajahi artikel terbaru, panduan, dan praktik terbaik untuk membantu Anda membangun dan mengembangkan bisnis SaaS Anda.",
+    "article1_title": "Memulai dengan Pengembangan SaaS",
+    "article1_description": "Pelajari fundamental membangun aplikasi SaaS yang scalable dari nol. Best practices, pola arsitektur, dan tools yang essential.",
+    "article1_category": "Panduan",
+    "article1_date": "15 Oktober 2025",
+    "article2_title": "Membangun Sistem Autentikasi yang Aman",
+    "article2_description": "Implementasikan autentikasi dan otorisasi yang kuat untuk platform SaaS Anda. OAuth, JWT, dan praktik keamanan terbaik.",
+    "article2_category": "Keamanan",
+    "article2_date": "12 Oktober 2025",
+    "article3_title": "Optimasi Performa SaaS dalam Skala Besar",
+    "article3_description": "Strategi meningkatkan performa aplikasi, mengurangi biaya, dan memberikan pengalaman pengguna yang lebih baik seiring berkembangnya SaaS Anda.",
+    "article3_category": "Performa",
+    "article3_date": "10 Oktober 2025",
+    "article4_title": "Scaling Infrastruktur SaaS Anda",
+    "article4_description": "Best practices untuk scaling infrastruktur, optimasi database, strategi caching, dan menangani traffic tinggi.",
+    "article4_category": "Infrastruktur",
+    "article4_date": "8 Oktober 2025"
   }
 }

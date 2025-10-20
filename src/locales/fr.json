@@ -162,5 +162,26 @@
     "message_title": "Message",
     "message_description": "Entrez un message détaillé pour votre todo.",
     "submit_button": "Envoyer"
+  },
+  "Blog": {
+    "section_subtitle": "Ressources",
+    "section_title": "Apprenez à Créer de Meilleurs Produits SaaS",
+    "section_description": "Explorez nos derniers articles, guides et meilleures pratiques pour vous aider à construire et développer votre entreprise SaaS.",
+    "article1_title": "Débuter avec le Développement SaaS",
+    "article1_description": "Apprenez les fondamentaux de la création d'une application SaaS évolutive à partir de zéro. Meilleures pratiques, modèles d'architecture et outils essentiels.",
+    "article1_category": "Guide",
+    "article1_date": "15 octobre 2025",
+    "article2_title": "Créer des Systèmes d'Authentification Sécurisés",
+    "article2_description": "Implémentez une authentification et une autorisation robustes pour votre plateforme SaaS. OAuth, JWT et meilleures pratiques de sécurité.",
+    "article2_category": "Sécurité",
+    "article2_date": "12 octobre 2025",
+    "article3_title": "Optimiser les Performances SaaS à Grande Échelle",
+    "article3_description": "Stratégies pour améliorer les performances des applications, réduire les coûts et offrir de meilleures expériences utilisateur au fur et à mesure que votre SaaS se développe.",
+    "article3_category": "Performance",
+    "article3_date": "10 octobre 2025",
+    "article4_title": "Faire Évoluer Votre Infrastructure SaaS",
+    "article4_description": "Meilleures pratiques pour la mise à l'échelle de l'infrastructure, l'optimisation des bases de données, les stratégies de mise en cache et la gestion des charges de trafic élevées.",
+    "article4_category": "Infrastructure",
+    "article4_date": "8 octobre 2025"
   }
 }
