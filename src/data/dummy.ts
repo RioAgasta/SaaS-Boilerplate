@@ -47,7 +47,7 @@ export const users = [
     first_name: 'Grace',
     last_name: 'Lee',
   },
-]
+];
 
 export const tags = [
   { id: 1, name: 'Technology' },
@@ -55,7 +55,7 @@ export const tags = [
   { id: 3, name: 'Web Development' },
   { id: 4, name: 'Design' },
   { id: 5, name: 'Productivity' },
-]
+];
 
 export const comments = [
   {
@@ -104,7 +104,7 @@ export const comments = [
     userId: 'grace',
     content: 'This markdown example was clear and concise — good job!',
   },
-]
+];
 
 export const posts = [
   {
@@ -112,7 +112,7 @@ export const posts = [
     userId: 'john_doe',
     title: 'Understanding React Hooks',
     content:
-      "React hooks allow you to use state and lifecycle methods in functional components. Here's a quick overview of `useState`, `useEffect`, and `useContext`.",
+      'React hooks allow you to use state and lifecycle methods in functional components. Here\'s a quick overview of `useState`, `useEffect`, and `useContext`.',
     tags: [
       { id: 2, name: 'Programming' },
       { id: 3, name: 'Web Development' },
@@ -139,7 +139,7 @@ export const posts = [
     userId: 'alice',
     title: 'Async JavaScript Simplified',
     content:
-      "JavaScript's asynchronous nature can be confusing. Let's break down **callbacks**, **promises**, and **async/await** with examples.",
+      'JavaScript\'s asynchronous nature can be confusing. Let\'s break down **callbacks**, **promises**, and **async/await** with examples.',
     tags: [{ id: 2, name: 'Programming' }],
     comments: [
       {
@@ -176,7 +176,7 @@ export const posts = [
     userId: 'bob',
     title: 'Boosting Productivity with VS Code',
     content:
-      "Visual Studio Code offers powerful extensions for developers. We'll cover **shortcuts**, **themes**, and **debugging tools**.",
+      'Visual Studio Code offers powerful extensions for developers. We\'ll cover **shortcuts**, **themes**, and **debugging tools**.',
     tags: [
       { id: 5, name: 'Productivity' },
       { id: 2, name: 'Programming' },
@@ -243,7 +243,7 @@ export const posts = [
     userId: 'eve',
     title: 'Why Design Systems Matter',
     content:
-      "A design system maintains **consistency** and improves **collaboration**. Here's how to build one effectively.",
+      'A design system maintains **consistency** and improves **collaboration**. Here\'s how to build one effectively.',
     tags: [{ id: 4, name: 'Design' }],
     comments: [],
   },
@@ -271,7 +271,7 @@ export const posts = [
     ],
     comments: [],
   },
-]
+];
 
 export const HTTPSuccess = {
   success: true,
@@ -279,7 +279,7 @@ export const HTTPSuccess = {
   data: {
     data: posts,
   },
-}
+};
 
 export const HTTPFailed = {
   success: false,
@@ -288,4 +288,4 @@ export const HTTPFailed = {
     code: 'POST_NOT_FOUND',
     statusCode: 404,
   },
-}
+};
