@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { NextIntlClientProvider } from 'next-intl';
+import { Toaster } from 'sonner';
 import { DemoBadge } from '@/components/DemoBadge';
 
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -82,6 +83,7 @@ export default async function RootLayout(props: {
             {props.children}
 
             <DemoBadge />
+            <Toaster />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
