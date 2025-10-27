@@ -123,11 +123,11 @@ export const FYPPostsPage = () => {
                 <h3 className="mb-4 text-sm font-semibold text-gray-900 dark:text-white">
                   Staff Picks
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {recommendedPosts.map(post => (
                     <Link key={post.id} href={`/blogs/${post.id}`}>
-                      <article className="group cursor-pointer">
-                        <div className="mb-2 flex items-center gap-2">
+                      <article className="group my-10 cursor-pointer pb-6 border-b border-gray-100 last:border-0 last:pb-0 dark:border-gray-800">
+                        <div className="mb-3 flex items-center gap-2">
                           <div className="flex size-6 items-center justify-center rounded-full bg-gray-900 text-xs font-bold text-white dark:bg-white dark:text-gray-900">
                             {post.userId.charAt(0).toUpperCase()}
                           </div>
@@ -136,7 +136,7 @@ export const FYPPostsPage = () => {
                             {post.userId}
                           </span>
                         </div>
-                        <h4 className="mb-2 line-clamp-2 text-sm font-bold text-gray-900 transition-colors group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-400">
+                        <h4 className="mb-3 line-clamp-2 text-sm font-bold text-gray-900 transition-colors group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-400">
                           {post.title}
                         </h4>
                         <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">

@@ -10,7 +10,7 @@ type PostCardProps = {
 export const PostCard = ({ post }: PostCardProps) => {
   return (
     <Link href={`/blogs/${post.id}`}>
-      <article className="group cursor-pointer border-b border-gray-200 pb-8 transition-opacity hover:opacity-75 dark:border-gray-800">
+      <article className="group cursor-pointer border-b border-gray-200 py-8 transition-opacity hover:opacity-75 dark:border-gray-800">
         {/* Tags */}
         {post.tags.length > 0 && (
           <div className="mb-3 flex flex-wrap gap-2">
