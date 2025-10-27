@@ -1,18 +1,47 @@
 'use client';
 
+import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
+// import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
+import { DeletePostDialog } from '@/components/DeletePostDialog';
 import { PostCard } from '@/components/PostCard';
+import { PostFormDialog } from '@/components/PostFormDialog';
 import { SearchFilter } from '@/components/SearchFilter';
-import { tags as allTags, posts } from '@/data/dummy';
+import { Button } from '@/components/ui/button';
+import { tags as allTags, posts as dummyPosts } from '@/data/dummy';
 import { Section } from '@/features/landing/Section';
 import { BlogNavbar } from '@/templates/BlogNavbar';
 
+type Post = {
+  id: string;
+  userId: string;
+  title: string;
+  content: string;
+  tags: Array<{ id: number; name: string }>;
+  comments: any[];
+};
+
 export const FYPPostsPage = () => {
   const t = useTranslations('FYPPosts');
+  // const { toast } = useToast();
 
+  // Mock current user
+  const currentUserId = 'john_doe';
+
+  // State for posts
+  const [posts, setPosts] = useState<Post[]>(dummyPosts);
+
+  // State for dialogs
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+
+  // State for search and filter
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
@@ -47,13 +76,51 @@ export const FYPPostsPage = () => {
     }
 
     return filtered;
-  }, [searchQuery, selectedTags]);
+  }, [posts, searchQuery, selectedTags]);
 
   // Get top 3 recommended posts (most comments)
   const recommendedPosts = useMemo(
-    () => [...posts].sort((a, b) => b.comments.length - a.comments.length).slice(0, 3),
-    [],
+    () =>
+      [...posts]
+        .sort((a, b) => b.comments.length - a.comments.length)
+        .slice(0, 3),
+    [posts],
   );
+
+  // Handlers
+  const handleCreatePost = (newPost: Post) => {
+    setPosts(prev => [newPost, ...prev]);
+    toast('Your post has been created successfully.');
+  };
+
+  const handleEditPost = (updatedPost: Post) => {
+    setPosts(prev =>
+      prev.map(post => (post.id === updatedPost.id ? updatedPost : post)),
+    );
+    toast('Your post has been updated successfully.');
+  };
+
+  const handleDeletePost = () => {
+    if (selectedPost) {
+      setPosts(prev => prev.filter(post => post.id !== selectedPost.id));
+      toast('Your post has been deleted successfully.');
+      setIsDeleteDialogOpen(false);
+      setSelectedPost(null);
+    }
+  };
+
+  const openEditDialog = (post: Post) => {
+    setSelectedPost(post);
+    setIsEditDialogOpen(true);
+  };
+
+  const openDeleteDialog = (postId: string) => {
+    const post = posts.find(p => p.id === postId);
+    if (post) {
+      setSelectedPost(post);
+      setIsDeleteDialogOpen(true);
+    }
+  };
 
   return (
     <>
@@ -88,11 +155,15 @@ export const FYPPostsPage = () => {
 
             {/* Main Feed */}
             <main className="lg:col-span-6">
-              {/* Results Count */}
+              {/* Create Post Button */}
               <div className="mb-6 flex items-center justify-between">
                 <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   {t('showing_results', { count: filteredPosts.length })}
                 </p>
+                <Button onClick={() => setIsCreateDialogOpen(true)}>
+                  <Plus className="mr-2 size-4" />
+                  Create Post
+                </Button>
               </div>
 
               {/* Posts List */}
@@ -100,7 +171,13 @@ export const FYPPostsPage = () => {
                 ? (
                     <div className="space-y-8">
                       {filteredPosts.map(post => (
-                        <PostCard key={post.id} post={post} />
+                        <PostCard
+                          key={post.id}
+                          post={post}
+                          onEdit={openEditDialog}
+                          onDelete={openDeleteDialog}
+                          currentUserId={currentUserId}
+                        />
                       ))}
                     </div>
                   )
@@ -155,6 +232,29 @@ export const FYPPostsPage = () => {
           </div>
         </Section>
       </div>
+
+      {/* Dialogs */}
+      <PostFormDialog
+        open={isCreateDialogOpen}
+        onOpenChange={setIsCreateDialogOpen}
+        onSave={handleCreatePost}
+        mode="create"
+      />
+
+      <PostFormDialog
+        open={isEditDialogOpen}
+        onOpenChange={setIsEditDialogOpen}
+        post={selectedPost || undefined}
+        onSave={handleEditPost}
+        mode="edit"
+      />
+
+      <DeletePostDialog
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
+        onConfirm={handleDeletePost}
+        postTitle={selectedPost?.title || ''}
+      />
     </>
   );
 };
