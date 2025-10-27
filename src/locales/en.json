@@ -183,5 +183,15 @@
     "article4_description": "Best practices for infrastructure scaling, database optimization, caching strategies, and handling high traffic loads.",
     "article4_category": "Infrastructure",
     "article4_date": "October 8, 2025"
+  },
+  "FYPPosts": {
+    "meta_title": "Arisu.Blog - Explore Articles & Insights",
+    "meta_description": "Discover interesting articles about technology, programming, design, and more on Arisu.Blog.",
+    "section_subtitle": "Welcome to",
+    "section_title": "Arisu.Blog",
+    "section_description": "Your go-to place for insightful articles on tech, programming, and creative ideas.",
+    "showing_results": "Found {count} article(s)",
+    "no_results_title": "No articles found",
+    "no_results_description": "Try different keywords or explore other topics."
   }
 }

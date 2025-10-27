@@ -215,7 +215,7 @@ export const posts = [
     userId: 'frank',
     title: 'Writing Clean Markdown',
     content:
-      'Markdown is simple yet powerful. Here’s how to use **headings**, **lists**, and **code blocks** effectively.',
+      'Markdown is simple yet powerful. Here\'s how to use **headings**, **lists**, and **code blocks** effectively.',
     tags: [{ id: 5, name: 'Productivity' }],
     comments: [
       {
