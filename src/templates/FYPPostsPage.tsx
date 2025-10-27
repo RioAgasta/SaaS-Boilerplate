@@ -3,6 +3,7 @@
 import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 
 // import { useToast } from '@/hooks/use-toast';
@@ -27,6 +28,7 @@ type Post = {
 
 export const FYPPostsPage = () => {
   const t = useTranslations('FYPPosts');
+  const router = useRouter();
   // const { toast } = useToast();
 
   // Mock current user
@@ -37,7 +39,6 @@ export const FYPPostsPage = () => {
 
   // State for dialogs
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
@@ -93,13 +94,6 @@ export const FYPPostsPage = () => {
     toast('Your post has been created successfully.');
   };
 
-  const handleEditPost = (updatedPost: Post) => {
-    setPosts(prev =>
-      prev.map(post => (post.id === updatedPost.id ? updatedPost : post)),
-    );
-    toast('Your post has been updated successfully.');
-  };
-
   const handleDeletePost = () => {
     if (selectedPost) {
       setPosts(prev => prev.filter(post => post.id !== selectedPost.id));
@@ -110,8 +104,7 @@ export const FYPPostsPage = () => {
   };
 
   const openEditDialog = (post: Post) => {
-    setSelectedPost(post);
-    setIsEditDialogOpen(true);
+    router.push(`/blogs/edit/${post.id}`);
   };
 
   const openDeleteDialog = (postId: string) => {
@@ -160,10 +153,12 @@ export const FYPPostsPage = () => {
                 <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   {t('showing_results', { count: filteredPosts.length })}
                 </p>
-                <Button onClick={() => setIsCreateDialogOpen(true)}>
-                  <Plus className="mr-2 size-4" />
-                  Create Post
-                </Button>
+                <Link href="/blogs/write">
+                  <Button>
+                    <Plus className="mr-2 size-4" />
+                    Write a story
+                  </Button>
+                </Link>
               </div>
 
               {/* Posts List */}
@@ -239,14 +234,6 @@ export const FYPPostsPage = () => {
         onOpenChange={setIsCreateDialogOpen}
         onSave={handleCreatePost}
         mode="create"
-      />
-
-      <PostFormDialog
-        open={isEditDialogOpen}
-        onOpenChange={setIsEditDialogOpen}
-        post={selectedPost || undefined}
-        onSave={handleEditPost}
-        mode="edit"
       />
 
       <DeletePostDialog

@@ -41,6 +41,14 @@ export const BlogNavbar = () => {
         </li>
 
         <li>
+          <Link href="/blogs/write">Write</Link>
+        </li>
+
+        <li>
+          <Link href="/blogs/my-posts">My Stories</Link>
+        </li>
+
+        <li>
           <Link href="/dashboard">Profile</Link>
         </li>
       </CenteredMenu>

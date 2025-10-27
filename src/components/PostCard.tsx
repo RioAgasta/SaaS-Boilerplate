@@ -1,20 +1,12 @@
 'use client';
 
-import { Edit, Trash2 } from 'lucide-react';
+import type { Post } from '@/types/Post';
+
+import { Edit, MessageCircle, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-
-type Post = {
-  id: string;
-  userId: string;
-  title: string;
-  content: string;
-  tags: Array<{ id: number; name: string }>;
-  comments: any[];
-};
 
 type PostCardProps = {
   post: Post;
@@ -34,13 +26,13 @@ export function PostCard({
 
   return (
     <article
-      className="group relative rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+      className="group relative border-b border-gray-200 py-8 transition-opacity hover:opacity-75 dark:border-gray-800"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Edit/Delete Buttons - Only for owner */}
       {isOwner && isHovered && (
-        <div className="absolute right-4 top-4 flex gap-2">
+        <div className="absolute right-0 top-8 flex gap-2">
           <Button
             variant="outline"
             size="sm"
@@ -65,48 +57,46 @@ export function PostCard({
         </div>
       )}
 
-      <Link href={`/blogs/${post.id}`}>
-        {/* Author */}
-        <div className="mb-4 flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-sm font-bold text-white">
-            {post.userId.charAt(0).toUpperCase()}
-          </div>
-          <div>
-            <p className="font-medium text-gray-900 dark:text-white">
-              @
-              {post.userId}
-            </p>
-          </div>
-        </div>
-
-        {/* Title */}
-        <h2 className="mb-3 text-2xl font-bold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
-          {post.title}
-        </h2>
-
-        {/* Content Preview */}
-        <p className="mb-4 line-clamp-3 text-gray-600 dark:text-gray-400">
-          {post.content}
-        </p>
-
+      <Link href={`/blogs/${post.id}`} className="block">
         {/* Tags */}
         {post.tags.length > 0 && (
-          <div className="mb-4 flex flex-wrap gap-2">
+          <div className="mb-3 flex flex-wrap gap-2">
             {post.tags.map(tag => (
-              <Badge key={tag.id} variant="secondary">
+              <span
+                key={tag.id}
+                className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+              >
                 {tag.name}
-              </Badge>
+              </span>
             ))}
           </div>
         )}
 
-        {/* Footer */}
-        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-          <span>
-            {post.comments.length}
-            {' '}
-            {post.comments.length === 1 ? 'comment' : 'comments'}
-          </span>
+        {/* Title */}
+        <h3 className="mb-3 text-2xl font-bold text-gray-900 transition-colors group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
+          {post.title}
+        </h3>
+
+        {/* Content Preview */}
+        <p className="mb-4 line-clamp-2 text-base text-gray-600 dark:text-gray-400">
+          {post.content}
+        </p>
+
+        {/* Footer with Author and Comments */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="flex size-8 items-center justify-center rounded-full bg-gray-900 text-xs font-bold text-white dark:bg-white dark:text-gray-900">
+              {post.userId.charAt(0).toUpperCase()}
+            </div>
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              @
+              {post.userId}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+            <MessageCircle className="size-4" />
+            <span>{post.comments.length}</span>
+          </div>
         </div>
       </Link>
     </article>

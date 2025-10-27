@@ -1,298 +1,357 @@
 'use client';
 
-import type { CommentWithAuthor } from '@/utils/BlogHelpers';
-import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, Facebook, Link2, Linkedin, MessageCircle, Twitter, User } from 'lucide-react';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-
+import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { CommentForm, CommentsList } from '@/components/CommentSection';
-import { Badge } from '@/components/ui/badge';
+
+import { ExportPDFButton } from '@/components/ExportPDFButton';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { getCommentsByPostId, getPostById, getReadingTime } from '@/utils/BlogHelpers';
+import { posts as dummyPosts, users } from '@/data/dummy';
+import { Section } from '@/features/landing/Section';
+import { BlogNavbar } from '@/templates/BlogNavbar';
 
-type BlogPostPageProps = {
-  params: {
-    postId: string;
-    locale: string;
-  };
-};
+export default function BlogPostDetailPage() {
+  const params = useParams();
+  const router = useRouter();
+  const postId = params.postId as string;
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const { postId } = params;
+  // Find post by ID
+  const post = dummyPosts.find(p => p.id === postId);
 
-  // Get the blog post
-  const post = getPostById(postId);
+  // Find author
+  const author = post ? users.find(u => u.username === post.userId) : null;
 
-  if (!post) {
-    notFound();
-  }
-
-  // Get comments for this post
-  const initialComments = getCommentsByPostId(postId);
-  const [comments, setComments] = useState<CommentWithAuthor[]>(initialComments);
+  // Mock comment functionality
+  const [comments, setComments] = useState(post?.comments || []);
+  const [newComment, setNewComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Mock current user - in a real app, this would come from authentication
-  const currentUserId = 'alice'; // This would be the logged-in user's ID
+  if (!post) {
+    return (
+      <>
+        <BlogNavbar />
+        <div className="min-h-screen bg-white dark:bg-gray-950">
+          <Section className="py-12">
+            <div className="text-center">
+              <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
+                Post Not Found
+              </h1>
+              <p className="mb-6 text-gray-600 dark:text-gray-400">
+                The post you're looking for doesn't exist.
+              </p>
+              <Link href="/blogs">
+                <Button>Back to Blog</Button>
+              </Link>
+            </div>
+          </Section>
+        </div>
+      </>
+    );
+  }
 
-  const readingTime = getReadingTime(post.content);
+  const handleAddComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newComment.trim()) {
+      return;
+    }
 
-  const handleAddComment = async (content: string) => {
     setIsSubmitting(true);
 
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-    // Create new comment (in a real app, this would be an API call)
-    const newComment: CommentWithAuthor = {
+    const comment = {
       id: `comment-${Date.now()}`,
-      postId,
-      userId: currentUserId,
-      content,
-      author: {
-        id: 'd2a0b29e-5726-46ff-8a2d-5693a89b3a43',
-        username: 'alice',
-        first_name: 'Alice',
-        last_name: 'Nguyen',
-      },
+      postId: post.id,
+      userId: 'alice',
+      content: newComment,
     };
 
-    setComments(prev => [...prev, newComment]);
+    setComments([...comments, comment]);
+    setNewComment('');
     setIsSubmitting(false);
   };
 
-  const handleEditComment = async (commentId: string, newContent: string) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    setComments(prev =>
-      prev.map(comment =>
-        comment.id === commentId
-          ? { ...comment, content: newContent }
-          : comment,
-      ),
-    );
-  };
-
-  const handleDeleteComment = async (commentId: string) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    setComments(prev => prev.filter(comment => comment.id !== commentId));
-  };
-
-  const formatContent = (content: string) => {
-    return content.split(/(\*\*.*?\*\*)/).map((part) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={part}>{part.slice(2, -2)}</strong>;
-      }
-      return <span key={part}>{part}</span>;
+  const formatDate = (date: Date | string) => {
+    return new Date(date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
   };
 
-  return (
-    <div className="min-h-screen bg-background">
-      {/* Header Navigation */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-4">
-          <Link
-            href="/blogs"
-            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="mr-2 size-4" />
-            Back to Blog
-          </Link>
-        </div>
-      </div>
+  // Share functions
+  const shareToTwitter = () => {
+    const url = window.location.href;
+    const text = `Check out this article: ${post.title}`;
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+  };
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid gap-8 lg:grid-cols-4">
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            <article className="prose prose-lg max-w-none">
-              {/* Post Header */}
-              <div className="not-prose mb-8">
-                <div className="mb-4 flex flex-wrap gap-2">
+  const shareToFacebook = () => {
+    const url = window.location.href;
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+  };
+
+  const shareToLinkedIn = () => {
+    const url = window.location.href;
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+  };
+
+  const copyLink = async () => {
+    await navigator.clipboard.writeText(window.location.href);
+    // Using browser notification instead of alert
+    if ('Notification' in window && Notification.permission === 'granted') {
+      // eslint-disable-next-line no-new
+      new Notification('Link copied to clipboard!');
+    }
+  };
+
+  return (
+    <>
+      <BlogNavbar />
+      <div className="min-h-screen bg-white dark:bg-gray-950">
+        {/* Back Button */}
+        <div className="border-b border-gray-200 dark:border-gray-800">
+          <Section className="py-4">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+            >
+              <ArrowLeft className="size-4" />
+              Back
+            </button>
+          </Section>
+        </div>
+
+        <Section className="py-12">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12">
+            {/* Main Content */}
+            <article className="lg:col-span-8">
+              {/* Tags */}
+              {post.tags.length > 0 && (
+                <div className="mb-6 flex flex-wrap gap-2">
                   {post.tags.map(tag => (
-                    <Badge key={tag.id} variant="secondary" className="flex items-center gap-1">
-                      <Tag className="size-3" />
+                    <span
+                      key={tag.id}
+                      className="rounded-full bg-gray-100 px-4 py-1.5 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                    >
                       {tag.name}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
+              )}
 
-                <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-                  {post.title}
-                </h1>
+              {/* Title */}
+              <h1 className="mb-6 text-4xl font-bold leading-tight text-gray-900 dark:text-white md:text-5xl">
+                {post.title}
+              </h1>
 
-                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <div className="flex size-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                      {post.author.first_name[0]}
-                      {post.author.last_name[0]}
-                    </div>
-                    <span>
-                      {post.author.first_name}
-                      {' '}
-                      {post.author.last_name}
+              {/* Author Info */}
+              <div className="mb-8 flex items-center gap-4 border-b border-gray-200 pb-8 dark:border-gray-800">
+                <div className="flex size-12 items-center justify-center rounded-full bg-gray-900 text-lg font-bold text-white dark:bg-white dark:text-gray-900">
+                  {post.userId.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    {author
+                      ? `${author.first_name} ${author.last_name}`
+                      : post.userId}
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="size-3.5" />
+                      {formatDate(new Date())}
                     </span>
-                  </div>
-
-                  <div className="flex items-center gap-1">
-                    <Calendar className="size-4" />
-                    <span>December 15, 2024</span>
-                  </div>
-
-                  <div className="flex items-center gap-1">
-                    <Clock className="size-4" />
-                    <span>
-                      {readingTime}
+                    <span className="flex items-center gap-1">
+                      <MessageCircle className="size-3.5" />
+                      {comments.length}
                       {' '}
-                      min read
+                      comments
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Post Content */}
-              <div className="text-foreground">
-                <div className="prose prose-lg max-w-none text-foreground">
-                  {formatContent(post.content)}
+              {/* Content */}
+              <div className="prose prose-lg max-w-none dark:prose-invert">
+                {post.content.split('\n').map((paragraph, index) => (
+                  <p key={`para-${index}-${paragraph.slice(0, 20)}`} className="mb-4 text-gray-700 dark:text-gray-300">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {/* Comments Section */}
+              <div className="mt-16 border-t border-gray-200 pt-12 dark:border-gray-800">
+                <h2 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
+                  Comments (
+                  {comments.length}
+                  )
+                </h2>
+
+                {/* Add Comment Form */}
+                <form onSubmit={handleAddComment} className="mb-8">
+                  <textarea
+                    value={newComment}
+                    onChange={e => setNewComment(e.target.value)}
+                    placeholder="Share your thoughts..."
+                    rows={4}
+                    className="w-full rounded-lg border border-gray-200 bg-transparent px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:text-white dark:placeholder:text-gray-600"
+                  />
+                  <div className="mt-3 flex justify-end">
+                    <Button type="submit" disabled={isSubmitting || !newComment.trim()}>
+                      {isSubmitting ? 'Posting...' : 'Post Comment'}
+                    </Button>
+                  </div>
+                </form>
+
+                {/* Comments List */}
+                <div className="space-y-6">
+                  {comments.length === 0
+                    ? (
+                        <p className="text-center text-gray-500 dark:text-gray-400">
+                          No comments yet. Be the first to comment!
+                        </p>
+                      )
+                    : (
+                        comments.map(comment => (
+                          <div
+                            key={comment.id}
+                            className="border-b border-gray-100 pb-6 last:border-0 dark:border-gray-800"
+                          >
+                            <div className="mb-2 flex items-center gap-3">
+                              <div className="flex size-10 items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white dark:bg-white dark:text-gray-900">
+                                {comment.userId.charAt(0).toUpperCase()}
+                              </div>
+                              <div>
+                                <p className="font-medium text-gray-900 dark:text-white">
+                                  @
+                                  {comment.userId}
+                                </p>
+                              </div>
+                            </div>
+                            <p className="ml-13 text-gray-700 dark:text-gray-300">
+                              {comment.content}
+                            </p>
+                          </div>
+                        ))
+                      )}
                 </div>
               </div>
             </article>
 
-            {/* Comments Section */}
-            <div className="mt-12">
-              <Separator className="mb-8" />
-
-              <div className="space-y-8">
-                <div>
-                  <h2 className="mb-2 text-2xl font-bold tracking-tight">
-                    Comments (
-                    {comments.length}
-                    )
-                  </h2>
-                  <p className="text-muted-foreground">
-                    Join the conversation and share your thoughts on this post.
-                  </p>
-                </div>
-
-                {/* Add Comment Form */}
-                <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                  <div className="flex flex-col space-y-1.5 p-6">
-                    <h3 className="text-2xl font-semibold leading-none tracking-tight">Leave a Comment</h3>
+            {/* Sidebar */}
+            <aside className="lg:col-span-4">
+              <div className="sticky top-8 space-y-6">
+                {/* Author Card */}
+                <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-900">
+                  <div className="mb-4 flex items-center gap-3">
+                    <User className="size-5 text-gray-600 dark:text-gray-400" />
+                    <h3 className="font-semibold text-gray-900 dark:text-white">
+                      About the Author
+                    </h3>
                   </div>
-                  <div className="p-6 pt-0">
-                    <CommentForm
-                      onSubmit={handleAddComment}
-                      isSubmitting={isSubmitting}
-                    />
-                  </div>
-                </div>
-
-                {/* Comments List */}
-                <div>
-                  <CommentsList
-                    comments={comments}
-                    onEdit={handleEditComment}
-                    onDelete={handleDeleteComment}
-                    currentUserId={currentUserId}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-8 space-y-6">
-              {/* Author Info */}
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                <div className="flex flex-col space-y-1.5 p-6">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight">About the Author</h3>
-                </div>
-                <div className="p-6 pt-0">
-                  <div className="flex items-center space-x-3">
-                    <div className="flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground text-lg font-semibold">
-                      {post.author.first_name[0]}
-                      {post.author.last_name[0]}
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex size-12 items-center justify-center rounded-full bg-gray-900 text-lg font-bold text-white dark:bg-white dark:text-gray-900">
+                      {post.userId.charAt(0).toUpperCase()}
                     </div>
                     <div>
-                      <p className="font-medium">
-                        {post.author.first_name}
-                        {' '}
-                        {post.author.last_name}
+                      <p className="font-semibold text-gray-900 dark:text-white">
+                        {author
+                          ? `${author.first_name} ${author.last_name}`
+                          : post.userId}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
                         @
-                        {post.author.username}
+                        {post.userId}
                       </p>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Post Stats */}
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                <div className="flex flex-col space-y-1.5 p-6">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight">Post Details</h3>
-                </div>
-                <div className="p-6 pt-0 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Reading time</span>
-                    <span className="text-sm font-medium">
-                      {readingTime}
-                      {' '}
-                      min
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Comments</span>
-                    <span className="text-sm font-medium">{comments.length}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Tags</span>
-                    <span className="text-sm font-medium">{post.tags.length}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Share Actions */}
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                <div className="flex flex-col space-y-1.5 p-6">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight">Share this post</h3>
-                </div>
-                <div className="p-6 pt-0">
+                {/* Share Buttons */}
+                <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-900">
+                  <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+                    Share Article
+                  </h3>
                   <div className="space-y-2">
-                    <Button variant="outline" className="w-full justify-start" asChild>
-                      <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer">
-                        Share on Twitter
-                      </a>
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start" asChild>
-                      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer">
-                        Share on LinkedIn
-                      </a>
-                    </Button>
                     <Button
+                      onClick={shareToTwitter}
                       variant="outline"
                       className="w-full justify-start"
-                      onClick={() => {
-                        navigator.clipboard.writeText(window.location.href);
-                      }}
                     >
+                      <Twitter className="mr-2 size-4" />
+                      Share on Twitter
+                    </Button>
+                    <Button
+                      onClick={shareToFacebook}
+                      variant="outline"
+                      className="w-full justify-start"
+                    >
+                      <Facebook className="mr-2 size-4" />
+                      Share on Facebook
+                    </Button>
+                    <Button
+                      onClick={shareToLinkedIn}
+                      variant="outline"
+                      className="w-full justify-start"
+                    >
+                      <Linkedin className="mr-2 size-4" />
+                      Share on LinkedIn
+                    </Button>
+                    <Button
+                      onClick={copyLink}
+                      variant="outline"
+                      className="w-full justify-start"
+                    >
+                      <Link2 className="mr-2 size-4" />
                       Copy Link
                     </Button>
                   </div>
                 </div>
+
+                {/* Export PDF Button */}
+                <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-900">
+                  <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+                    Save Article
+                  </h3>
+                  <ExportPDFButton
+                    postId={post.id}
+                    postTitle={post.title}
+                    postContent={post.content}
+                    authorName={author ? `${author.first_name} ${author.last_name}` : post.userId}
+                    tags={post.tags.map(tag => tag.name)}
+                    createdAt={new Date()}
+                  />
+                </div>
+
+                {/* Post Stats */}
+                <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-900">
+                  <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+                    Post Statistics
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600 dark:text-gray-400">Comments</span>
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        {comments.length}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600 dark:text-gray-400">Tags</span>
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        {post.tags.length}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </aside>
           </div>
-        </div>
+        </Section>
       </div>
-    </div>
+    </>
   );
 }
