@@ -1,11 +1,11 @@
 {
   "Index": {
-    "meta_title": "SaaSテンプレート - ビジネスを簡単に構築・拡張できる完璧なSaaSテンプレート",
-    "meta_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料でオープンソースのランディングページテンプレート。"
+    "meta_title": "SaaSテンプレート - ビジネスを簡単に構築・拡大できる完璧なSaaSテンプレート",
+    "meta_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料オープンソースランディングページテンプレート。"
   },
   "Navbar": {
-    "sign_in": "ログイン",
-    "sign_up": "新規登録",
+    "sign_in": "サインイン",
+    "sign_up": "サインアップ",
     "product": "製品",
     "docs": "ドキュメント",
     "blog": "ブログ",
@@ -13,9 +13,9 @@
     "company": "会社"
   },
   "Hero": {
-    "follow_twitter": "Twitterで@Ixartzをフォロー",
-    "title": "ビジネスを簡単に構築・拡張できる完璧な<important>SaaSテンプレート</important>",
-    "description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料でオープンソースのランディングページテンプレート。",
+    "follow_twitter": "TwitterでIxartzをフォロー",
+    "title": "ビジネスを簡単に構築・拡大できる完璧な<important>SaaSテンプレート</important>",
+    "description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料オープンソースランディングページテンプレート。",
     "primary_button": "始める",
     "secondary_button": "GitHubでスター"
   },
@@ -24,20 +24,20 @@
   },
   "Features": {
     "section_subtitle": "機能",
-    "section_title": "SaaSテンプレートの可能性を最大限に引き出す",
-    "section_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料でオープンソースのランディングページテンプレート。",
+    "section_title": "SaaSテンプレートの全機能を解放",
+    "section_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料オープンソースランディングページテンプレート。",
     "feature1_title": "Node.js",
     "feature2_title": "React",
     "feature3_title": "Tailwind CSS",
     "feature4_title": "TypeScript",
     "feature5_title": "Shadcn UI",
     "feature6_title": "ESLint",
-    "feature_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料でオープンソースのランディングページテンプレート。"
+    "feature_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料オープンソースランディングページテンプレート。"
   },
   "Pricing": {
     "section_subtitle": "機能",
-    "section_title": "SaaSテンプレートの可能性を最大限に引き出す",
-    "section_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料でオープンソースのランディングページテンプレート。",
+    "section_title": "SaaSテンプレートの全機能を解放",
+    "section_description": "React、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料オープンソースランディングページテンプレート。",
     "button_text": "始める"
   },
   "PricingPlan": {
@@ -54,15 +54,15 @@
     "feature_email_support": "メールサポート",
     "plan_interval_month": "月",
     "plan_interval_year": "年",
-    "next_renew_date": "サブスクリプションは{date}に更新されます"
+    "next_renew_date": "次回更新日: {date}"
   },
   "FAQ": {
-    "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam enim dui, id consequat turpis ullamcorper ac. Mauris id quam dolor. Nullam eu egestas turpis. Proin risus elit, sollicitudin in mi a, accumsan euismod turpis. In euismod mi sed diam tristique hendrerit."
+    "question": "よくある質問ですか？",
+    "answer": "これは回答のサンプルテキストです。実際の内容に置き換えてください。"
   },
   "CTA": {
-    "title": "準備はできましたか？",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "title": "準備はできていますか？",
+    "description": "今すぐ始めて、あなたのビジネスを次のレベルへ。",
     "button_text": "GitHubでスター"
   },
   "Footer": {
@@ -73,29 +73,29 @@
     "company": "会社",
     "terms_of_service": "利用規約",
     "privacy_policy": "プライバシーポリシー",
-    "designed_by": "<author></author>によるデザイン。"
+    "designed_by": "<author></author>によるデザイン"
   },
   "ProtectFallback": {
-    "not_enough_permission": "このアクションを実行する権限がありません"
+    "not_enough_permission": "この操作を実行する権限がありません"
   },
   "SignIn": {
-    "meta_title": "ログイン",
-    "meta_description": "ユーザーフレンドリーなログインプロセスでアカウントにシームレスにサインインできます。"
+    "meta_title": "サインイン",
+    "meta_description": "シームレスにアカウントにサインインできます。"
   },
   "SignUp": {
-    "meta_title": "新規登録",
-    "meta_description": "直感的なサインアッププロセスで簡単にアカウントを作成できます。"
+    "meta_title": "サインアップ",
+    "meta_description": "簡単にアカウントを作成できます。"
   },
   "DashboardLayout": {
     "home": "ホーム",
-    "todos": "TODO",
+    "todos": "Todo",
     "members": "メンバー",
     "billing": "請求",
     "settings": "設定"
   },
   "Dashboard": {
-    "meta_title": "SaaSテンプレートダッシュボード",
-    "meta_description": "Next.js、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料でオープンソースのランディングページテンプレート。"
+    "meta_title": "SaaSテンプレート ダッシュボード",
+    "meta_description": "Next.js、TypeScript、Shadcn UI、Tailwind CSSで構築された、SaaSビジネス向けの無料オープンソースランディングページテンプレート。"
   },
   "DashboardIndex": {
     "title_bar": "ダッシュボード",
@@ -106,8 +106,8 @@
     "message_state_alternative": "同じスタックでより多くの機能が必要ですか？<url></url>をお試しください。"
   },
   "UserProfile": {
-    "title_bar": "ユーザープロファイル",
-    "title_bar_description": "ユーザープロファイルを表示・管理"
+    "title_bar": "ユーザープロフィール",
+    "title_bar_description": "ユーザープロフィールの表示と管理"
   },
   "OrganizationProfile": {
     "title_bar": "組織管理",
@@ -115,10 +115,10 @@
   },
   "Billing": {
     "title_bar": "請求",
-    "title_bar_description": "請求とサブスクリプションを管理",
+    "title_bar_description": "請求とサブスクリプションの管理",
     "current_section_title": "現在のプラン",
     "current_section_description": "要件に最適な支払いプランを調整",
-    "manage_subscription_button": "サブスクリプション管理"
+    "manage_subscription_button": "サブスクリプションを管理"
   },
   "BillingOptions": {
     "current_plan": "現在のプラン",
@@ -127,16 +127,16 @@
   "CheckoutConfirmation": {
     "title_bar": "支払い確認",
     "message_state_title": "支払い成功",
-    "message_state_description": "お支払いが正常に処理されました。ご購入ありがとうございます！",
+    "message_state_description": "支払いが正常に処理されました。ご購入ありがとうございます！",
     "message_state_button": "請求に戻る"
   },
   "DataTable": {
     "no_results": "結果がありません。"
   },
   "Todos": {
-    "title_bar": "TODOリスト",
-    "title_bar_description": "TODOリストを表示・管理",
-    "add_todo_button": "新しいTODO"
+    "title_bar": "Todoリスト",
+    "title_bar_description": "Todoリストの表示と管理",
+    "add_todo_button": "新しいTodo"
   },
   "TodoTableColumns": {
     "open_menu": "メニューを開く",
@@ -144,44 +144,54 @@
     "delete": "削除",
     "title_header": "タイトル",
     "message_header": "メッセージ",
-    "created_at_header": "作成日時"
+    "created_at_header": "作成日"
   },
   "AddTodo": {
-    "title_bar": "TODO追加",
-    "add_todo_section_title": "新しいTODOを作成",
-    "add_todo_section_description": "以下のフォームに記入して新しいTODOを作成"
+    "title_bar": "Todoを追加",
+    "add_todo_section_title": "新しいTodoを作成",
+    "add_todo_section_description": "以下のフォームに記入して新しいTodoを作成"
   },
   "EditTodo": {
-    "title_bar": "TODO編集",
-    "edit_todo_section_title": "TODOを変更",
-    "edit_todo_section_description": "以下のフォームに記入してTODOを編集"
+    "title_bar": "Todoを編集",
+    "edit_todo_section_title": "Todoを修正",
+    "edit_todo_section_description": "以下のフォームに記入してTodoを編集"
   },
   "TodoForm": {
     "title_label": "タイトル",
-    "title_description": "TODOの説明的なタイトルを入力してください。",
+    "title_description": "Todoの説明的なタイトルを入力してください。",
     "message_title": "メッセージ",
-    "message_description": "TODOの詳細なメッセージを入力してください。",
+    "message_description": "Todoの詳細なメッセージを入力してください。",
     "submit_button": "送信"
   },
   "Blog": {
     "section_subtitle": "リソース",
-    "section_title": "より良いSaaS製品を構築する方法を学ぶ",
-    "section_description": "最新の記事、ガイド、ベストプラクティスを探索して、SaaSビジネスの構築と拡張を支援します。",
+    "section_title": "より良いSaaS製品の構築方法を学ぶ",
+    "section_description": "最新の記事、ガイド、ベストプラクティスを探索して、SaaSビジネスの構築と拡大を支援します。",
     "article1_title": "SaaS開発の始め方",
-    "article1_description": "ゼロからスケーラブルなSaaSアプリケーションを構築する基礎を学びます。ベストプラクティス、アーキテクチャパターン、必須ツール。",
+    "article1_description": "スケーラブルなSaaSアプリケーションをゼロから構築するための基礎を学びます。ベストプラクティス、アーキテクチャパターン、必須ツール。",
     "article1_category": "ガイド",
     "article1_date": "2025年10月15日",
     "article2_title": "安全な認証システムの構築",
-    "article2_description": "SaaSプラットフォームのための堅牢な認証と認可を実装します。OAuth、JWT、セキュリティのベストプラクティス。",
+    "article2_description": "SaaSプラットフォームの堅牢な認証と認可を実装。OAuth、JWT、セキュリティのベストプラクティス。",
     "article2_category": "セキュリティ",
     "article2_date": "2025年10月12日",
     "article3_title": "大規模なSaaSパフォーマンスの最適化",
-    "article3_description": "アプリケーションのパフォーマンスを向上させ、コストを削減し、SaaSが成長するにつれてより良いユーザーエクスペリエンスを提供する戦略。",
+    "article3_description": "SaaSが成長するにつれて、アプリケーションのパフォーマンスを向上させ、コストを削減し、より良いユーザーエクスペリエンスを提供する戦略。",
     "article3_category": "パフォーマンス",
     "article3_date": "2025年10月10日",
-    "article4_title": "SaaSインフラストラクチャの拡張",
-    "article4_description": "インフラストラクチャのスケーリング、データベース最適化、キャッシング戦略、高トラフィック負荷の処理のためのベストプラクティス。",
+    "article4_title": "SaaSインフラストラクチャのスケーリング",
+    "article4_description": "インフラストラクチャのスケーリング、データベースの最適化、キャッシング戦略、高トラフィック負荷の処理のためのベストプラクティス。",
     "article4_category": "インフラストラクチャ",
     "article4_date": "2025年10月8日"
+  },
+  "FYPPosts": {
+    "meta_title": "Arisu.Blog - 記事とインサイトを探索",
+    "meta_description": "Arisu.Blogでテクノロジー、プログラミング、デザインなどに関する興味深い記事を見つけましょう。",
+    "section_subtitle": "ようこそ",
+    "section_title": "Arisu.Blog",
+    "section_description": "テクノロジー、プログラミング、クリエイティブなアイデアに関する洞察力のある記事をお届けします。",
+    "showing_results": "{count}件の記事が見つかりました",
+    "no_results_title": "記事が見つかりません",
+    "no_results_description": "他のキーワードを試すか、別のトピックを探索してください。"
   }
 }
