@@ -1,0 +1,254 @@
+/* Tiptap Editor Styles - Medium-like appearance */
+
+.tiptap {
+  outline: none;
+  font-size: 21px;
+  line-height: 1.58;
+  color: rgba(41, 41, 41, 1);
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-weight: 400;
+  letter-spacing: -0.003em;
+}
+
+.dark .tiptap {
+  color: rgba(242, 242, 242, 1);
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: rgba(0, 0, 0, 0.3);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+  font-size: 21px;
+  line-height: 1.58;
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.dark .tiptap p.is-editor-empty:first-child::before {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Headings - Medium style */
+.medium-editor h1 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.4em;
+  margin-top: 0.8em;
+  letter-spacing: -0.015em;
+}
+
+.medium-editor h2 {
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.22;
+  margin-bottom: 0.4em;
+  margin-top: 1.2em;
+  letter-spacing: -0.012em;
+}
+
+.medium-editor h3 {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.4em;
+  margin-top: 1em;
+  letter-spacing: -0.009em;
+}
+
+/* Paragraphs */
+.medium-editor p {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+  line-height: 1.58;
+}
+
+.medium-editor p:first-child {
+  margin-top: 0;
+  font-size: 21px;
+}
+
+/* Bold and Italic */
+.medium-editor strong {
+  font-weight: 700;
+}
+
+.medium-editor em {
+  font-style: italic;
+}
+
+/* Lists - Medium style */
+.medium-editor ul,
+.medium-editor ol {
+  margin-bottom: 1.5em;
+  margin-left: 30px;
+  margin-top: 1.5em;
+  padding: 0;
+}
+
+.medium-editor ul {
+  list-style-type: disc;
+}
+
+.medium-editor ol {
+  list-style-type: decimal;
+}
+
+.medium-editor li {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  padding-left: 8px;
+}
+
+.medium-editor li p {
+  margin: 0;
+}
+
+/* Code - Medium style */
+.medium-editor code {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  color: rgba(0, 0, 0, 0.84);
+  font-family: 'Menlo', 'Monaco', 'Courier New', Courier, monospace;
+  font-size: 18px;
+  padding: 2px 5px;
+}
+
+.dark .medium-editor code {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.medium-editor pre {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-family: 'Menlo', 'Monaco', 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.dark .medium-editor pre {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.medium-editor pre code {
+  background: none;
+  font-size: 16px;
+  padding: 0;
+}
+
+/* Blockquote - Medium style */
+.medium-editor blockquote {
+  border-left: 3px solid rgba(0, 0, 0, 0.84);
+  color: rgba(0, 0, 0, 0.68);
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.014em;
+  line-height: 1.48;
+  margin-bottom: 1.5em;
+  margin-left: -20px;
+  margin-top: 1.5em;
+  padding-left: 17px;
+}
+
+.dark .medium-editor blockquote {
+  border-left-color: rgba(255, 255, 255, 0.84);
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* Links - Medium style */
+.medium-editor a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.4);
+  text-underline-offset: 2px;
+}
+
+.medium-editor a:hover {
+  text-decoration-color: rgba(0, 0, 0, 0.84);
+}
+
+.dark .medium-editor a {
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+}
+
+.dark .medium-editor a:hover {
+  text-decoration-color: rgba(255, 255, 255, 0.84);
+}
+
+/* Horizontal Rule */
+.medium-editor hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  margin: 2em 0;
+}
+
+.dark .medium-editor hr {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Selection */
+.medium-editor ::selection {
+  background-color: rgba(143, 206, 0, 0.2);
+}
+
+.dark .medium-editor ::selection {
+  background-color: rgba(143, 206, 0, 0.3);
+}
+
+/* Prosemirror specific */
+.ProseMirror {
+  min-height: 400px;
+  outline: none;
+  caret-color: rgba(0, 0, 0, 0.84);
+}
+
+.dark .ProseMirror {
+  caret-color: rgba(255, 255, 255, 0.84);
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.ProseMirror p {
+  margin: 0;
+  line-height: 1.58;
+  min-height: 1.58em;
+}
+
+/* Remove default prose styles to use Medium styles */
+.medium-editor.prose {
+  font-family: 'Georgia', 'Cambria', 'Times New Roman', Times, serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .medium-editor {
+    font-size: 18px;
+    padding: 0 0.5rem;
+  }
+
+  .medium-editor h1 {
+    font-size: 32px;
+  }
+
+  .medium-editor h2 {
+    font-size: 26px;
+  }
+
+  .medium-editor h3 {
+    font-size: 22px;
+  }
+
+  .medium-editor blockquote {
+    font-size: 20px;
+    margin-left: -15px;
+    padding-left: 12px;
+  }
+}

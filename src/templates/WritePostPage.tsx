@@ -4,11 +4,10 @@ import { Plus, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { MarkdownEditor } from '@/components/MarkdownEditor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { tags as allTags } from '@/data/dummy';
-import { Section } from '@/features/landing/Section';
 import { BlogNavbar } from '@/templates/BlogNavbar';
 
 type Tag = {
@@ -119,10 +118,10 @@ export const WritePostPage = () => {
     <>
       <BlogNavbar />
       <div className="min-h-screen bg-white dark:bg-gray-950">
-        <Section className="py-12">
-          <div className="mx-auto max-w-4xl px-4">
-            {/* Header Actions */}
-            <div className="mb-12 flex items-center justify-between">
+        {/* Medium-style Header */}
+        <div className="border-b border-gray-200 dark:border-gray-800">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+            <div className="flex items-center gap-4">
               <button
                 type="button"
                 onClick={() => router.back()}
@@ -130,174 +129,147 @@ export const WritePostPage = () => {
               >
                 ← Back
               </button>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="ghost"
-                  onClick={() => router.back()}
-                  disabled={isPublishing}
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={handlePublish}
-                  disabled={isPublishing || !title.trim() || !content.trim()}
-                  className="bg-green-600 px-6 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700"
-                >
-                  {isPublishing ? 'Publishing...' : 'Publish'}
-                </Button>
-              </div>
             </div>
-
-            {/* Title Input */}
-            <div className="mb-10">
-              <Textarea
-                placeholder="Title"
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-                maxLength={100}
-                rows={1}
-                className={`min-h-0 resize-none rounded-lg border border-gray-200 bg-transparent px-4 py-3 text-4xl font-bold leading-tight placeholder:text-gray-300 focus-visible:border-gray-400 focus-visible:ring-0 md:text-5xl dark:border-gray-700 dark:placeholder:text-gray-600 dark:focus-visible:border-gray-500 ${errors.title ? 'border-red-500' : ''}`}
-                style={{
-                  height: 'auto',
-                  minHeight: '60px',
-                }}
-                onInput={(e) => {
-                  const target = e.target as HTMLTextAreaElement;
-                  target.style.height = 'auto';
-                  target.style.height = `${target.scrollHeight}px`;
-                }}
-              />
-              <div className="mt-4 flex items-center justify-between">
-                {errors.title
-                  ? (
-                      <p className="text-sm text-red-500">{errors.title}</p>
-                    )
-                  : (
-                      <span />
-                    )}
-                <p className="text-sm text-gray-400">
-                  {title.length}
-                  /100
-                </p>
-              </div>
+            <div className="flex items-center gap-3">
+              <Button
+                variant="ghost"
+                onClick={() => router.back()}
+                disabled={isPublishing}
+                className="text-gray-600 hover:text-gray-900"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handlePublish}
+                disabled={isPublishing || !title.trim() || !content.trim()}
+                className="bg-green-600 px-6 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700"
+              >
+                {isPublishing ? 'Publishing...' : 'Publish'}
+              </Button>
             </div>
+          </div>
+        </div>
 
-            {/* Content Textarea */}
-            <div className="mb-12">
-              <Textarea
-                placeholder="Tell your story..."
-                value={content}
-                onChange={e => setContent(e.target.value)}
-                maxLength={50000}
-                rows={20}
-                className={`min-h-[500px] resize-none rounded-lg border border-gray-200 bg-transparent px-4 py-3 text-xl leading-relaxed placeholder:text-gray-300 focus-visible:border-gray-400 focus-visible:ring-0 dark:border-gray-700 dark:placeholder:text-gray-600 dark:focus-visible:border-gray-500 ${errors.content ? 'border-red-500' : ''}`}
-              />
-              <div className="mt-3 flex items-center justify-between text-sm">
-                {errors.content
-                  ? (
-                      <p className="text-red-500">{errors.content}</p>
-                    )
-                  : (
-                      <span className="text-gray-400">Markdown supported</span>
-                    )}
-                <span className="text-gray-400">
-                  {content.length.toLocaleString()}
-                  {' '}
-                  characters
-                </span>
-              </div>
-            </div>
+        {/* Medium-style Editor Container */}
+        <div className="mx-auto max-w-3xl px-6 py-12">
+          {/* Title Input - Medium Style */}
+          <div className="mb-2">
+            <Input
+              placeholder="Title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              maxLength={100}
+              className="h-[60px] border-none bg-transparent px-0 text-[42px] font-medium leading-[1.14] tracking-tight text-gray-800 placeholder:text-gray-300 focus-visible:ring-0 dark:text-gray-100 dark:placeholder:text-gray-500"
+              style={{
+                fontFamily: 'Georgia, Cambria, "Times New Roman", Times, serif',
+              }}
+            />
+            {errors.title && (
+              <p className="mt-2 text-sm text-red-500">{errors.title}</p>
+            )}
+          </div>
 
-            {/* Tags Section */}
-            <div className="space-y-6 border-t border-gray-200 pt-10 dark:border-gray-800">
-              {/* Selected Tags */}
-              {selectedTags.length > 0 && (
-                <div>
-                  <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Selected Topics (
-                    {selectedTags.length}
-                    /5)
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedTags.map(tag => (
-                      <span
-                        key={tag.id}
-                        className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white dark:bg-white dark:text-gray-900"
-                      >
-                        {tag.name}
-                        <button
-                          type="button"
-                          onClick={() => removeTag(tag.id)}
-                          className="transition-opacity hover:opacity-70"
-                        >
-                          <X className="size-3.5" />
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+          {/* Content Editor - Medium Style */}
+          <div className="mb-12">
+            <MarkdownEditor
+              value={content}
+              onChange={setContent}
+              placeholder="Tell your story..."
+              height={600}
+            />
+            {errors.content && (
+              <p className="mt-2 text-sm text-red-500">{errors.content}</p>
+            )}
+          </div>
 
-              {/* Custom Tag Input */}
+          {/* Tags Section */}
+          <div className="space-y-6 border-t border-gray-200 pt-10 dark:border-gray-800">
+            {/* Selected Tags */}
+            {selectedTags.length > 0 && (
               <div>
                 <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Add Custom Topic
-                </h4>
-                <div className="flex gap-2">
-                  <Input
-                    placeholder="Type and press Enter (e.g., database → DATABASE)"
-                    value={customTagInput}
-                    onChange={e => setCustomTagInput(e.target.value)}
-                    onKeyPress={handleCustomTagKeyPress}
-                    disabled={selectedTags.length >= 5}
-                    className="flex-1"
-                    maxLength={20}
-                  />
-                  <Button
-                    type="button"
-                    onClick={addCustomTag}
-                    disabled={!customTagInput.trim() || selectedTags.length >= 5}
-                    variant="outline"
-                    size="icon"
-                  >
-                    <Plus className="size-4" />
-                  </Button>
-                </div>
-                {errors.tags && (
-                  <p className="mt-2 text-sm text-red-500">{errors.tags}</p>
-                )}
-              </div>
-
-              {/* Predefined Tags */}
-              <div>
-                <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Or Select from Topics
+                  Selected Topics (
+                  {selectedTags.length}
+                  /5)
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {allTags.map((tag) => {
-                    const isSelected = selectedTags.some(t => t.id === tag.id);
-                    return (
+                  {selectedTags.map(tag => (
+                    <span
+                      key={tag.id}
+                      className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white dark:bg-white dark:text-gray-900"
+                    >
+                      {tag.name}
                       <button
-                        key={tag.id}
                         type="button"
-                        onClick={() => togglePredefinedTag(tag)}
-                        disabled={!isSelected && selectedTags.length >= 5}
-                        className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                          isSelected
-                            ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
-                        }`}
+                        onClick={() => removeTag(tag.id)}
+                        className="transition-opacity hover:opacity-70"
                       >
-                        {tag.name}
+                        <X className="size-3.5" />
                       </button>
-                    );
-                  })}
+                    </span>
+                  ))}
                 </div>
+              </div>
+            )}
+
+            {/* Custom Tag Input */}
+            <div>
+              <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+                Add Custom Topic
+              </h4>
+              <div className="flex gap-2">
+                <Input
+                  placeholder="Type and press Enter (e.g., database → DATABASE)"
+                  value={customTagInput}
+                  onChange={e => setCustomTagInput(e.target.value)}
+                  onKeyPress={handleCustomTagKeyPress}
+                  disabled={selectedTags.length >= 5}
+                  className="flex-1"
+                  maxLength={20}
+                />
+                <Button
+                  type="button"
+                  onClick={addCustomTag}
+                  disabled={!customTagInput.trim() || selectedTags.length >= 5}
+                  variant="outline"
+                  size="icon"
+                >
+                  <Plus className="size-4" />
+                </Button>
+              </div>
+              {errors.tags && (
+                <p className="mt-2 text-sm text-red-500">{errors.tags}</p>
+              )}
+            </div>
+
+            {/* Predefined Tags */}
+            <div>
+              <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+                Or Select from Topics
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {allTags.map((tag) => {
+                  const isSelected = selectedTags.some(t => t.id === tag.id);
+                  return (
+                    <button
+                      key={tag.id}
+                      type="button"
+                      onClick={() => togglePredefinedTag(tag)}
+                      disabled={!isSelected && selectedTags.length >= 5}
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                        isSelected
+                          ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      {tag.name}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
-        </Section>
+        </div>
       </div>
     </>
   );

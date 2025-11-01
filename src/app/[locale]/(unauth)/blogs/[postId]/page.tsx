@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { ExportPDFButton } from '@/components/ExportPDFButton';
+import { MarkdownPreviewComponent } from '@/components/MarkdownPreview';
 import { Button } from '@/components/ui/button';
 import { posts as dummyPosts, users } from '@/data/dummy';
 import { Section } from '@/features/landing/Section';
@@ -176,11 +177,10 @@ export default function BlogPostDetailPage() {
 
               {/* Content */}
               <div className="prose prose-lg max-w-none dark:prose-invert">
-                {post.content.split('\n').map((paragraph, index) => (
-                  <p key={`para-${index}-${paragraph.slice(0, 20)}`} className="mb-4 text-gray-700 dark:text-gray-300">
-                    {paragraph}
-                  </p>
-                ))}
+                <MarkdownPreviewComponent
+                  content={post.content}
+                  className="text-gray-700 dark:text-gray-300"
+                />
               </div>
 
               {/* Comments Section */}

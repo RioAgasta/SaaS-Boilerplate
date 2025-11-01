@@ -14,7 +14,6 @@ export const updatePostSchema = z.object({
   message: 'At least one field must be provided for update',
 });
 
-
 // Type definitions for Blog Post system
 export type Tag = {
   id: number;
