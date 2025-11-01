@@ -1,6 +1,7 @@
 'use client';
 
 import { Plus, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -17,6 +18,7 @@ type Tag = {
 
 export const WritePostPage = () => {
   const router = useRouter();
+  const t = useTranslations('BlogWrite');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
@@ -28,15 +30,15 @@ export const WritePostPage = () => {
     const newErrors: { title?: string; content?: string; tags?: string } = {};
 
     if (!title.trim()) {
-      newErrors.title = 'Title is required';
+      newErrors.title = t('title_error');
     } else if (title.length > 100) {
-      newErrors.title = 'Title must be 100 characters or less';
+      newErrors.title = t('title_length_error');
     }
 
     if (!content.trim()) {
-      newErrors.content = 'Content is required';
+      newErrors.content = t('content_error');
     } else if (content.length > 50000) {
-      newErrors.content = 'Content must be 50,000 characters or less';
+      newErrors.content = t('content_length_error');
     }
 
     setErrors(newErrors);
@@ -81,7 +83,7 @@ export const WritePostPage = () => {
     }
 
     if (selectedTags.length >= 5) {
-      setErrors(prev => ({ ...prev, tags: 'Maximum 5 tags allowed' }));
+      setErrors(prev => ({ ...prev, tags: t('max_tags_error') }));
       return;
     }
 
@@ -127,7 +129,7 @@ export const WritePostPage = () => {
                 onClick={() => router.back()}
                 className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
               >
-                ← Back
+                {t('back_button')}
               </button>
             </div>
             <div className="flex items-center gap-3">
@@ -137,14 +139,14 @@ export const WritePostPage = () => {
                 disabled={isPublishing}
                 className="text-gray-600 hover:text-gray-900"
               >
-                Cancel
+                {t('cancel_button')}
               </Button>
               <Button
                 onClick={handlePublish}
                 disabled={isPublishing || !title.trim() || !content.trim()}
                 className="bg-green-600 px-6 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700"
               >
-                {isPublishing ? 'Publishing...' : 'Publish'}
+                {isPublishing ? t('publishing_button') : t('publish_button')}
               </Button>
             </div>
           </div>
@@ -155,7 +157,7 @@ export const WritePostPage = () => {
           {/* Title Input - Medium Style */}
           <div className="mb-2">
             <Input
-              placeholder="Title"
+              placeholder={t('title_placeholder')}
               value={title}
               onChange={e => setTitle(e.target.value)}
               maxLength={100}
@@ -174,7 +176,7 @@ export const WritePostPage = () => {
             <MarkdownEditor
               value={content}
               onChange={setContent}
-              placeholder="Tell your story..."
+              placeholder={t('content_placeholder')}
               height={600}
             />
             {errors.content && (
@@ -188,9 +190,7 @@ export const WritePostPage = () => {
             {selectedTags.length > 0 && (
               <div>
                 <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Selected Topics (
-                  {selectedTags.length}
-                  /5)
+                  {t('tags_section_title', { count: selectedTags.length })}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedTags.map(tag => (
@@ -215,11 +215,11 @@ export const WritePostPage = () => {
             {/* Custom Tag Input */}
             <div>
               <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                Add Custom Topic
+                {t('custom_tag_title')}
               </h4>
               <div className="flex gap-2">
                 <Input
-                  placeholder="Type and press Enter (e.g., database → DATABASE)"
+                  placeholder={t('custom_tag_placeholder')}
                   value={customTagInput}
                   onChange={e => setCustomTagInput(e.target.value)}
                   onKeyPress={handleCustomTagKeyPress}
@@ -245,7 +245,7 @@ export const WritePostPage = () => {
             {/* Predefined Tags */}
             <div>
               <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                Or Select from Topics
+                {t('predefined_tags_title')}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {allTags.map((tag) => {

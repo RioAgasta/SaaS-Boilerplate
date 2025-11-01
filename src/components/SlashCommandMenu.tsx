@@ -28,7 +28,7 @@ export type SlashCommandMenuProps = {
   command: (item: SlashCommandItem) => void;
 };
 
-export const SlashCommandMenu = ({ ref, ...props }) => {
+export const SlashCommandMenu = ({ ref, ...props }: { ref: any; items: SlashCommandItem[]; command: (item: SlashCommandItem) => void }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const selectItem = (index: number) => {
@@ -74,23 +74,25 @@ export const SlashCommandMenu = ({ ref, ...props }) => {
   }));
 
   return (
-    <div className="z-50 w-72 rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
-      <div className="max-h-80 overflow-y-auto p-2">
+    <div className="z-50 w-72 overflow-hidden rounded-lg border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:bg-gray-800 dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
+      <div className="max-h-80 overflow-y-auto p-1">
         {props.items.length > 0
           ? (
-              props.items.map((item, index) => (
+              props.items.map((item: SlashCommandItem, index: number) => (
                 <button
                   key={index}
                   type="button"
-                  className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left transition-colors ${
+                  className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left transition-all ${
                     index === selectedIndex
                       ? 'bg-gray-100 dark:bg-gray-700'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-750'
+                      : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
                   }`}
                   onClick={() => selectItem(index)}
                 >
-                  <div className="flex size-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700">
-                    {item.icon}
+                  <div className="flex size-9 items-center justify-center rounded-md">
+                    <div className="text-gray-600 dark:text-gray-400">
+                      {item.icon}
+                    </div>
                   </div>
                   <div className="flex-1">
                     <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
@@ -104,7 +106,7 @@ export const SlashCommandMenu = ({ ref, ...props }) => {
               ))
             )
           : (
-              <div className="px-3 py-2 text-sm text-gray-500">No results</div>
+              <div className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400">No results</div>
             )}
       </div>
     </div>
@@ -113,11 +115,34 @@ export const SlashCommandMenu = ({ ref, ...props }) => {
 
 SlashCommandMenu.displayName = 'SlashCommandMenu';
 
-export function getSlashCommandItems(): SlashCommandItem[] {
+export function getSlashCommandItems(t?: (key: string) => string): SlashCommandItem[] {
+  // Fallback to English if no translation function provided
+  const getText = t || ((key: string) => {
+    const fallbacks: Record<string, string> = {
+      slash_command_text_title: 'Text',
+      slash_command_text_description: 'Just start typing with plain text.',
+      slash_command_heading1_title: 'Heading 1',
+      slash_command_heading1_description: 'Big section heading.',
+      slash_command_heading2_title: 'Heading 2',
+      slash_command_heading2_description: 'Medium section heading.',
+      slash_command_heading3_title: 'Heading 3',
+      slash_command_heading3_description: 'Small section heading.',
+      slash_command_bullet_title: 'Bullet List',
+      slash_command_bullet_description: 'Create a simple bullet list.',
+      slash_command_numbered_title: 'Numbered List',
+      slash_command_numbered_description: 'Create a list with numbering.',
+      slash_command_quote_title: 'Quote',
+      slash_command_quote_description: 'Capture a quote.',
+      slash_command_code_title: 'Code',
+      slash_command_code_description: 'Capture a code snippet.',
+    };
+    return fallbacks[key] || key;
+  });
+
   return [
     {
-      title: 'Text',
-      description: 'Just start typing with plain text.',
+      title: getText('slash_command_text_title'),
+      description: getText('slash_command_text_description'),
       icon: <Text className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed
@@ -129,8 +154,8 @@ export function getSlashCommandItems(): SlashCommandItem[] {
       },
     },
     {
-      title: 'Heading 1',
-      description: 'Big section heading.',
+      title: getText('slash_command_heading1_title'),
+      description: getText('slash_command_heading1_description'),
       icon: <Heading1 className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed
@@ -142,8 +167,8 @@ export function getSlashCommandItems(): SlashCommandItem[] {
       },
     },
     {
-      title: 'Heading 2',
-      description: 'Medium section heading.',
+      title: getText('slash_command_heading2_title'),
+      description: getText('slash_command_heading2_description'),
       icon: <Heading2 className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed
@@ -155,8 +180,8 @@ export function getSlashCommandItems(): SlashCommandItem[] {
       },
     },
     {
-      title: 'Heading 3',
-      description: 'Small section heading.',
+      title: getText('slash_command_heading3_title'),
+      description: getText('slash_command_heading3_description'),
       icon: <Heading3 className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed
@@ -168,8 +193,8 @@ export function getSlashCommandItems(): SlashCommandItem[] {
       },
     },
     {
-      title: 'Bullet List',
-      description: 'Create a simple bullet list.',
+      title: getText('slash_command_bullet_title'),
+      description: getText('slash_command_bullet_description'),
       icon: <List className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed
@@ -181,8 +206,8 @@ export function getSlashCommandItems(): SlashCommandItem[] {
       },
     },
     {
-      title: 'Numbered List',
-      description: 'Create a list with numbering.',
+      title: getText('slash_command_numbered_title'),
+      description: getText('slash_command_numbered_description'),
       icon: <ListOrdered className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed
@@ -194,8 +219,8 @@ export function getSlashCommandItems(): SlashCommandItem[] {
       },
     },
     {
-      title: 'Quote',
-      description: 'Capture a quote.',
+      title: getText('slash_command_quote_title'),
+      description: getText('slash_command_quote_description'),
       icon: <Quote className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed
@@ -207,8 +232,8 @@ export function getSlashCommandItems(): SlashCommandItem[] {
       },
     },
     {
-      title: 'Code',
-      description: 'Capture a code snippet.',
+      title: getText('slash_command_code_title'),
+      description: getText('slash_command_code_description'),
       icon: <Code className="size-4" />,
       command: ({ editor: ed, range }) => {
         ed

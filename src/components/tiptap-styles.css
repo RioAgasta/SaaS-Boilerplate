@@ -252,3 +252,27 @@
     padding-left: 12px;
   }
 }
+
+/* Tippy.js tooltip - Remove border */
+.tippy-box {
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  background: transparent !important;
+}
+
+.dark .tippy-box {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.tippy-content {
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.tippy-arrow {
+  display: none !important;
+}

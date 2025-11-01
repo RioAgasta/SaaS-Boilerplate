@@ -7,6 +7,7 @@ import { ReactRenderer } from '@tiptap/react';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Bold, Heading1, Heading2, Heading3, Italic, Link as LinkIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
 import tippy from 'tippy.js';
 import { SlashCommand } from './SlashCommandExtension';
@@ -36,6 +37,7 @@ export function MarkdownEditor({
   placeholder = 'Tell your story...',
   height = 500,
 }: MarkdownEditorProps) {
+  const t = useTranslations('BlogWrite');
   const bubbleMenuRef = useRef<HTMLDivElement>(null);
 
   const editor = useEditor({
@@ -58,7 +60,7 @@ export function MarkdownEditor({
       SlashCommand.configure({
         suggestion: {
           items: ({ query }: { query: string }) => {
-            return getSlashCommandItems()
+            return getSlashCommandItems(t)
               .filter(item =>
                 item.title.toLowerCase().startsWith(query.toLowerCase()),
               );
@@ -187,13 +189,13 @@ export function MarkdownEditor({
       {/* Bubble Menu - appears when text is selected */}
       <div
         ref={bubbleMenuRef}
-        className="z-50 hidden items-center gap-0.5 rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+        className="z-50 hidden items-center gap-0.5 rounded-lg bg-white p-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:bg-gray-800 dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]"
       >
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`rounded p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
-            editor.isActive('bold') ? 'bg-gray-100 dark:bg-gray-700' : ''
+          className={`rounded p-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 ${
+            editor.isActive('bold') ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'
           }`}
           title="Bold (Ctrl+B)"
         >
@@ -202,21 +204,21 @@ export function MarkdownEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`rounded p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
-            editor.isActive('italic') ? 'bg-gray-100 dark:bg-gray-700' : ''
+          className={`rounded p-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 ${
+            editor.isActive('italic') ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'
           }`}
           title="Italic (Ctrl+I)"
         >
           <Italic className="size-4" />
         </button>
 
-        <div className="mx-1 h-6 w-px bg-gray-300 dark:bg-gray-600" />
+        <div className="mx-1 h-6 w-px bg-gray-200 dark:bg-gray-600" />
 
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={`rounded p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
-            editor.isActive('heading', { level: 1 }) ? 'bg-gray-100 dark:bg-gray-700' : ''
+          className={`rounded p-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 ${
+            editor.isActive('heading', { level: 1 }) ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'
           }`}
           title="Heading 1"
         >
@@ -225,8 +227,8 @@ export function MarkdownEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={`rounded p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
-            editor.isActive('heading', { level: 2 }) ? 'bg-gray-100 dark:bg-gray-700' : ''
+          className={`rounded p-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 ${
+            editor.isActive('heading', { level: 2 }) ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'
           }`}
           title="Heading 2"
         >
@@ -235,21 +237,21 @@ export function MarkdownEditor({
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-          className={`rounded p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
-            editor.isActive('heading', { level: 3 }) ? 'bg-gray-100 dark:bg-gray-700' : ''
+          className={`rounded p-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 ${
+            editor.isActive('heading', { level: 3 }) ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'
           }`}
           title="Heading 3"
         >
           <Heading3 className="size-4" />
         </button>
 
-        <div className="mx-1 h-6 w-px bg-gray-300 dark:bg-gray-600" />
+        <div className="mx-1 h-6 w-px bg-gray-200 dark:bg-gray-600" />
 
         <button
           type="button"
           onClick={() => addLink(editor)}
-          className={`rounded p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
-            editor.isActive('link') ? 'bg-gray-100 dark:bg-gray-700' : ''
+          className={`rounded p-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 ${
+            editor.isActive('link') ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'
           }`}
           title="Add Link"
         >
